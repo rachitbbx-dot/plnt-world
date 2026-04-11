@@ -7,78 +7,154 @@
 <meta name="description" content="VK Flower Nursery - 30+ years of trusted plant care and guidance in Kangra.">
 <title>VK Flower Nursery</title>
 
-<!-- NEW FONT (Outfit) -->
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
-/* RESET */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* =========================
+ BASE
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   font-family: 'Outfit', sans-serif;
-  background: url('bg.webp') no-repeat center/cover;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
   color: #e8f5e9;
+  background: url('bg.webp') center/cover no-repeat;
   position: relative;
+  overflow: hidden;
 }
 
-/* OVERLAY */
+/* DARK LAYER */
 body::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 40, 20, 0.6);
+  background: rgba(0, 35, 18, 0.62);
   backdrop-filter: blur(2px);
+  z-index: 0;
 }
 
-/* CARD */
+/* =========================
+ FLOATING LEAVES (LIGHTWEIGHT)
+========================= */
+
+.leaf {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: rgba(46, 204, 113, 0.18);
+  border-radius: 40% 60% 60% 40%;
+  filter: blur(0.5px);
+  animation: float 12s infinite ease-in-out;
+  z-index: 0;
+}
+
+.leaf:nth-child(1) { top: 10%; left: 15%; animation-duration: 14s; }
+.leaf:nth-child(2) { top: 60%; left: 80%; animation-duration: 18s; }
+.leaf:nth-child(3) { top: 75%; left: 25%; animation-duration: 16s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+  50% { transform: translateY(-18px) rotate(20deg); opacity: 0.35; }
+}
+
+/* =========================
+ CARD (GLASS CORE)
+========================= */
+
 .glass-card {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   max-width: 440px;
   padding: 28px;
   border-radius: 22px;
+
+  background: rgba(0, 80, 40, 0.22);
   backdrop-filter: blur(18px);
-  background: rgba(0, 80, 40, 0.28);
+
   border: 1px solid rgba(255,255,255,0.10);
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+
   text-align: center;
+
+  /* subtle shimmer */
+  overflow: hidden;
 }
 
-/* BRAND (improved typography emphasis) */
+/* SHIMMER EFFECT */
+.glass-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255,255,255,0.08),
+    transparent 60%
+  );
+  transform: rotate(25deg);
+  animation: shimmer 6s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-30%) rotate(25deg); }
+  100% { transform: translateX(30%) rotate(25deg); }
+}
+
+/* =========================
+ CONTENT
+========================= */
+
 .brand {
   font-size: 2.1rem;
   font-weight: 600;
-  letter-spacing: 0.3px;
+  position: relative;
+  z-index: 2;
 }
 
 .meta {
   font-size: 0.85rem;
   opacity: 0.75;
   margin-top: 6px;
+  position: relative;
+  z-index: 2;
 }
 
 .divider {
   height: 1px;
   background: rgba(255,255,255,0.12);
   margin: 18px 0;
+  position: relative;
+  z-index: 2;
 }
 
-/* TEXT */
 .about {
   font-size: 0.95rem;
   line-height: 1.6;
   opacity: 0.92;
   margin-bottom: 22px;
+  position: relative;
+  z-index: 2;
 }
 
-/* BUTTONS */
+/* =========================
+ BUTTONS
+========================= */
+
 .btn {
   display: block;
   width: 100%;
@@ -89,9 +165,10 @@ body::before {
   font-size: 0.95rem;
   font-weight: 500;
   transition: 0.25s ease;
+  position: relative;
+  z-index: 2;
 }
 
-/* PRIMARY */
 .btn-primary {
   background: linear-gradient(135deg, #2ecc71, #1b5e20);
   color: black;
@@ -101,16 +178,17 @@ body::before {
   transform: translateY(-2px);
 }
 
-/* DISABLED */
 .btn-disabled {
   background: rgba(255,255,255,0.05);
   color: rgba(255,255,255,0.35);
-  cursor: not-allowed;
   pointer-events: none;
   border: 1px dashed rgba(255,255,255,0.15);
 }
 
-/* BADGES */
+/* =========================
+ BADGES
+========================= */
+
 .badges {
   margin-top: 14px;
   font-size: 0.8rem;
@@ -119,16 +197,31 @@ body::before {
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
+  position: relative;
+  z-index: 2;
 }
 
-/* FOOTER */
-.footer {
-  position: absolute;
-  bottom: 12px;
-  width: 100%;
-  text-align: center;
-  font-size: 0.7rem;
-  opacity: 0.6;
+/* =========================
+ MOBILE SAFETY
+========================= */
+
+@media (max-width: 768px) {
+  .glass-card {
+    max-width: 92%;
+    padding: 22px;
+  }
+
+  .brand {
+    font-size: 1.8rem;
+  }
+}
+
+/* reduce motion for low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  .glass-card::before,
+  .leaf {
+    animation: none !important;
+  }
 }
 
 </style>
@@ -137,6 +230,12 @@ body::before {
 
 <body>
 
+<!-- FLOATING LEAVES -->
+<div class="leaf"></div>
+<div class="leaf"></div>
+<div class="leaf"></div>
+
+<!-- CARD -->
 <div class="glass-card">
 
   <div class="brand">VK Flower Nursery</div>
@@ -160,10 +259,6 @@ body::before {
     <span>🚚 Safe Handling</span>
   </div>
 
-</div>
-
-<div class="footer">
-  © 2026 VK Flower Nursery • Made by RCHT
 </div>
 
 </body>
