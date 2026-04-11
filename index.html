@@ -11,15 +11,8 @@
 
 <style>
 
-/* =========================
- BASE
-========================= */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* BASE */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: 'Outfit', sans-serif;
@@ -44,34 +37,27 @@ body::before {
   z-index: 0;
 }
 
-/* =========================
- FLOATING LEAVES (LIGHTWEIGHT)
-========================= */
-
+/* FLOATING LEAVES */
 .leaf {
   position: absolute;
   width: 18px;
   height: 18px;
   background: rgba(46, 204, 113, 0.18);
   border-radius: 40% 60% 60% 40%;
-  filter: blur(0.5px);
-  animation: float 12s infinite ease-in-out;
+  animation: float 14s infinite ease-in-out;
   z-index: 0;
 }
 
-.leaf:nth-child(1) { top: 10%; left: 15%; animation-duration: 14s; }
-.leaf:nth-child(2) { top: 60%; left: 80%; animation-duration: 18s; }
-.leaf:nth-child(3) { top: 75%; left: 25%; animation-duration: 16s; }
+.leaf:nth-child(1) { top: 10%; left: 15%; }
+.leaf:nth-child(2) { top: 60%; left: 80%; }
+.leaf:nth-child(3) { top: 75%; left: 25%; }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
-  50% { transform: translateY(-18px) rotate(20deg); opacity: 0.35; }
+  0%, 100% { transform: translateY(0px); opacity: 0.2; }
+  50% { transform: translateY(-18px); opacity: 0.35; }
 }
 
-/* =========================
- CARD (GLASS CORE)
-========================= */
-
+/* CARD */
 .glass-card {
   position: relative;
   z-index: 2;
@@ -79,20 +65,15 @@ body::before {
   max-width: 440px;
   padding: 28px;
   border-radius: 22px;
-
   background: rgba(0, 80, 40, 0.22);
   backdrop-filter: blur(18px);
-
   border: 1px solid rgba(255,255,255,0.10);
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-
   text-align: center;
-
-  /* subtle shimmer */
   overflow: hidden;
 }
 
-/* SHIMMER EFFECT */
+/* SHIMMER */
 .glass-card::before {
   content: "";
   position: absolute;
@@ -115,10 +96,7 @@ body::before {
   100% { transform: translateX(30%) rotate(25deg); }
 }
 
-/* =========================
- CONTENT
-========================= */
-
+/* CONTENT */
 .brand {
   font-size: 2.1rem;
   font-weight: 600;
@@ -151,10 +129,7 @@ body::before {
   z-index: 2;
 }
 
-/* =========================
- BUTTONS
-========================= */
-
+/* BUTTONS */
 .btn {
   display: block;
   width: 100%;
@@ -164,7 +139,6 @@ body::before {
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
-  transition: 0.25s ease;
   position: relative;
   z-index: 2;
 }
@@ -174,10 +148,6 @@ body::before {
   color: black;
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-}
-
 .btn-disabled {
   background: rgba(255,255,255,0.05);
   color: rgba(255,255,255,0.35);
@@ -185,10 +155,7 @@ body::before {
   border: 1px dashed rgba(255,255,255,0.15);
 }
 
-/* =========================
- BADGES
-========================= */
-
+/* BADGES */
 .badges {
   margin-top: 14px;
   font-size: 0.8rem;
@@ -201,10 +168,18 @@ body::before {
   z-index: 2;
 }
 
-/* =========================
- MOBILE SAFETY
-========================= */
+/* FOOTER (RESTORED) */
+.footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.7rem;
+  opacity: 0.6;
+  z-index: 2;
+}
 
+/* MOBILE */
 @media (max-width: 768px) {
   .glass-card {
     max-width: 92%;
@@ -216,7 +191,7 @@ body::before {
   }
 }
 
-/* reduce motion for low-end devices */
+/* MOTION SAFETY */
 @media (prefers-reduced-motion: reduce) {
   .glass-card::before,
   .leaf {
@@ -230,7 +205,7 @@ body::before {
 
 <body>
 
-<!-- FLOATING LEAVES -->
+<!-- FLOATING ELEMENTS -->
 <div class="leaf"></div>
 <div class="leaf"></div>
 <div class="leaf"></div>
@@ -259,6 +234,11 @@ body::before {
     <span>🚚 Safe Handling</span>
   </div>
 
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  © 2026 VK Flower Nursery • Made by RCHT
 </div>
 
 </body>
