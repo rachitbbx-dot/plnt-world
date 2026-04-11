@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="VK Flower Nursery - 30+ years of trusted plant care and guidance in Kangra.">
+<title>VK Flower Nursery</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: url('bg.webp') no-repeat center/cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #e8f5e9;
+  padding: 20px;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 40, 20, 0.6);
+  backdrop-filter: blur(2px);
+}
+
+/* CARD */
+.glass-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  padding: 26px;
+  border-radius: 22px;
+  backdrop-filter: blur(18px);
+  background: rgba(0, 80, 40, 0.25);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 0.5px rgba(255,255,255,0.2);
+}
+
+/* HEADER (FIXED ISSUE) */
+.header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.brand {
+  font-size: 1.95rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+}
+
+.meta {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+  margin: 16px 0 18px;
+}
+
+/* ABOUT */
+.about {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* BUTTONS */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.08);
+  color: #c8e6c9;
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+/* FOOTER NAV */
+.footer-nav {
+  position: relative;
+  z-index: 1;
+  margin-top: 25px;
+  display: flex;
+  gap: 18px;
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+.footer-nav a {
+  color: #c8e6c9;
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
+}
+
+/* COPYRIGHT */
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+  margin-top: 8px;
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="glass-card">
+
+  <!-- HEADER (NOW SEPARATED PROPERLY) -->
+  <div class="header">
+    <div class="brand">VK Flower Nursery</div>
+    <div class="meta">Gaggal, Kangra • 30+ Years of Trust</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <div class="about">
+    Founded by Shri Kishori Lal and now led by Mr. Vivek Kumar, VK Flower Nursery focuses on practical plant care, not just selling plants.
+  </div>
+
+  <!-- BUTTONS -->
+  <a href="gallery.html" class="btn btn-primary">Plant Care Guide</a>
+  <a href="cata.html" class="btn btn-secondary">Catalogue (Coming Soon)</a>
+
+</div>
+
+<!-- FOOTER LINKS -->
+<div class="footer-nav">
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="privacy.html">Privacy</a>
+  <a href="terms.html">Terms</a>
+</div>
+
+<!-- COPYRIGHT -->
+<div class="footer-bottom">
+  © 2026 VK Flower Nursery • Made by RCHT
+</div>
+
+<script>
+const card = document.querySelector('.glass-card');
+card.style.opacity = 0;
+card.style.transform = 'translateY(20px)';
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    card.style.transition = 'all 0.6s ease';
+    card.style.opacity = 1;
+    card.style.transform = 'translateY(0)';
+  }, 150);
+});
+</script>
+
+</body>
+</html>
