@@ -7,173 +7,75 @@
 <meta name="description" content="VK Flower Nursery - 30+ years of trusted plant care and guidance in Kangra.">
 <title>VK Flower Nursery</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- NEW FONT (Outfit) -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
-/* =========================
- GLOBAL RESET
-========================= */
-
+/* RESET */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Outfit', sans-serif;
   background: url('bg.webp') no-repeat center/cover;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
   color: #e8f5e9;
   position: relative;
 }
 
+/* OVERLAY */
 body::before {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(0, 40, 20, 0.6);
   backdrop-filter: blur(2px);
-  z-index: 0;
 }
 
-/* =========================
- HERO SECTION
-========================= */
-
-.hero {
-  position: relative;
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  z-index: 1;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(2px);
-}
-
-.hero-content {
-  position: relative;
-  max-width: 800px;
-  padding: 30px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 15px;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  line-height: 1.6;
-}
-
-/* HERO BUTTONS */
-.hero-buttons {
-  margin-top: 25px;
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.hero-btn {
-  padding: 12px 20px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.25s ease;
-}
-
-/* PRIMARY = GUIDE (UPDATED DECISION) */
-.hero-btn.primary {
-  background: #2ecc71;
-  color: black;
-}
-
-.hero-btn.primary:hover {
-  transform: translateY(-2px);
-}
-
-/* SECONDARY = EXPLORE */
-.hero-btn.secondary {
-  border: 1px solid white;
-  color: white;
-  background: transparent;
-}
-
-.hero-btn.secondary:hover {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-/* HERO BADGES */
-.hero-badges {
-  margin-top: 20px;
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-  font-size: 0.9rem;
-  opacity: 0.85;
-}
-
-/* =========================
- CARD UI
-========================= */
-
+/* CARD */
 .glass-card {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 420px;
-  padding: 26px;
-  margin: -60px auto 40px;
+  max-width: 440px;
+  padding: 28px;
   border-radius: 22px;
   backdrop-filter: blur(18px);
-  background: rgba(0, 80, 40, 0.25);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 0.5px rgba(255,255,255,0.2);
-}
-
-/* HEADER */
-.header {
+  background: rgba(0, 80, 40, 0.28);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
   text-align: center;
-  margin-bottom: 18px;
 }
 
+/* BRAND (improved typography emphasis) */
 .brand {
-  font-size: 1.95rem;
+  font-size: 2.1rem;
   font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 .meta {
-  font-size: 0.8rem;
-  opacity: 0.7;
-  margin-top: 4px;
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin-top: 6px;
 }
 
 .divider {
   height: 1px;
-  background: rgba(255,255,255,0.1);
-  margin: 16px 0 18px;
+  background: rgba(255,255,255,0.12);
+  margin: 18px 0;
 }
 
-/* ABOUT */
+/* TEXT */
 .about {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   opacity: 0.92;
-  margin-bottom: 24px;
-  text-align: center;
+  margin-bottom: 22px;
 }
 
 /* BUTTONS */
@@ -186,51 +88,47 @@ body::before {
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
-  transition: all 0.25s ease;
+  transition: 0.25s ease;
 }
 
+/* PRIMARY */
 .btn-primary {
-  background: linear-gradient(135deg, #2e7d32, #1b5e20);
-  color: white;
+  background: linear-gradient(135deg, #2ecc71, #1b5e20);
+  color: black;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
 }
 
-.btn-secondary {
-  background: rgba(255,255,255,0.08);
-  color: #c8e6c9;
+/* DISABLED */
+.btn-disabled {
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.35);
+  cursor: not-allowed;
+  pointer-events: none;
+  border: 1px dashed rgba(255,255,255,0.15);
 }
 
-.btn-secondary:hover {
-  background: rgba(255,255,255,0.18);
+/* BADGES */
+.badges {
+  margin-top: 14px;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 /* FOOTER */
-.footer-nav {
-  position: relative;
-  z-index: 1;
-  margin-top: 25px;
-  display: flex;
-  gap: 18px;
-  font-size: 0.75rem;
-  opacity: 0.75;
-  justify-content: center;
-}
-
-.footer-nav a {
-  color: #c8e6c9;
-  text-decoration: none;
-}
-
-.footer-bottom {
-  position: relative;
-  z-index: 1;
-  margin-top: 8px;
+.footer {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  text-align: center;
   font-size: 0.7rem;
   opacity: 0.6;
-  text-align: center;
 }
 
 </style>
@@ -239,67 +137,32 @@ body::before {
 
 <body>
 
-<!-- =========================
- HERO SECTION
-========================= -->
-<section class="hero">
-
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content">
-
-    <h1>Healthy Plants. Grown to Thrive.</h1>
-
-    <p>
-      VK Flower Nursery offers carefully nurtured plants and practical care guidance focused on long-term survival and healthy growth.
-    </p>
-
-    <!-- CTA UPDATED -->
-    <div class="hero-buttons">
-      <a href="gallery.html" class="hero-btn primary">Plant Care Guide</a>
-      <a href="cata.html" class="hero-btn secondary">Explore Plants</a>
-    </div>
-
-    <div class="hero-badges">
-      <span>🌿 Nursery-Grown</span>
-      <span>🪴 Care First</span>
-      <span>🚚 Safe Handling</span>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =========================
- CARD
-========================= -->
 <div class="glass-card">
 
-  <div class="header">
-    <div class="brand">VK Flower Nursery</div>
-    <div class="meta">Gaggal, Kangra • 30+ Years of Trust</div>
-  </div>
+  <div class="brand">VK Flower Nursery</div>
+  <div class="meta">Gaggal, Kangra • 30+ Years of Trust</div>
 
   <div class="divider"></div>
 
   <div class="about">
-    Healthy, well-nurtured plants and gardening essentials grown with practical care — focused on helping your plants survive and thrive long after purchase.
+    Healthy, well-nurtured plants and gardening essentials grown with practical care — focused on long-term survival, not just sale-day appearance.  
+    <br><br>
+    We help your plants thrive after they leave the nursery.
   </div>
 
   <a href="gallery.html" class="btn btn-primary">Plant Care Guide</a>
-  <a href="cata.html" class="btn btn-secondary">Catalogue (Coming Soon)</a>
+
+  <div class="btn btn-disabled">Explore Plants (Coming Soon)</div>
+
+  <div class="badges">
+    <span>🌿 Nursery-Grown</span>
+    <span>🪴 Care-Focused</span>
+    <span>🚚 Safe Handling</span>
+  </div>
 
 </div>
 
-<!-- FOOTER -->
-<div class="footer-nav">
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-  <a href="privacy.html">Privacy</a>
-  <a href="terms.html">Terms</a>
-</div>
-
-<div class="footer-bottom">
+<div class="footer">
   © 2026 VK Flower Nursery • Made by RCHT
 </div>
 
