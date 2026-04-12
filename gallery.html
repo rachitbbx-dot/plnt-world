@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VK Flower Nursery - Gallery</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#0b1a12;
+  color:#fff;
+  padding:16px;
+}
+
+/* HEADER */
+.header{
+  max-width:1100px;
+  margin:auto;
+  margin-bottom:16px;
+}
+
+.searchBar{
+  width:100%;
+  padding:14px 16px;
+  border-radius:14px;
+  border:none;
+  outline:none;
+  font-size:14px;
+  background:rgba(255,255,255,0.08);
+  color:white;
+  backdrop-filter:blur(12px);
+}
+
+.searchBar::placeholder{
+  color:rgba(255,255,255,0.5);
+}
+
+/* GRID */
+.grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:14px;
+}
+
+/* CARD */
+.card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  padding:10px;
+  cursor:pointer;
+  transition:0.25s ease;
+  backdrop-filter:blur(10px);
+}
+
+.card:hover{
+  transform:translateY(-6px) scale(1.03);
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* IMAGE */
+.imgWrap{
+  width:100%;
+  aspect-ratio:1/1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border-radius:12px;
+  background:rgba(0,0,0,0.2);
+}
+
+.imgWrap img{
+  width:100%;
+  transition:0.3s ease;
+}
+
+.card:hover img{
+  transform:scale(1.1) rotate(-2deg);
+}
+
+/* TEXT */
+.name{
+  margin-top:8px;
+  font-weight:600;
+  font-size:14px;
+}
+
+.alt{
+  font-size:11px;
+  opacity:0.7;
+  font-style:italic;
+  margin-top:2px;
+}
+
+/* LOADER */
+.loader{
+  text-align:center;
+  margin-top:40px;
+  opacity:0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <input class="searchBar" id="search" placeholder="Search plants (name, alt names, tags)...">
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="loader" id="loader">Loading plants...</div>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbyAr64GYImWXIql0A17QBhdAhaetRk-m3_8-h5e3sItZKIBBaXEWyeHFn-5YPj7YIvvrA/exec";
+
+let plants = [];
+
+/* DRIVE IMAGE FORMATTER */
+function formatImage(url){
+  if(!url) return "";
+  const match = url.match(/id=([^&]+)/);
+  if(match){
+    return `https://lh3.googleusercontent.com/d/${match[1]}`;
+  }
+  return url;
+}
+
+/* RENDER CARDS */
+function render(data){
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+
+  data.forEach(p => {
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const img = formatImage(p.image);
+
+    card.innerHTML = `
+      <div class="imgWrap">
+        <img src="${img}" alt="${p.name}">
+      </div>
+      <div class="name">${p.name || ""}</div>
+      <div class="alt">${p.alt_names || ""}</div>
+    `;
+
+    card.onclick = () => {
+      window.location.href = `plant.html?id=${p.id}`;
+    };
+
+    grid.appendChild(card);
+  });
+}
+
+/* SEARCH LOGIC */
+document.getElementById("search").addEventListener("input", e => {
+  const t = e.target.value.toLowerCase();
+
+  const filtered = plants.filter(p =>
+    (p.name || "").toLowerCase().includes(t) ||
+    (p.alt_names || "").toLowerCase().includes(t) ||
+    (p.tags || "").toLowerCase().includes(t)
+  );
+
+  render(filtered);
+});
+
+/* FETCH DATA */
+fetch(API)
+  .then(r => r.json())
+  .then(data => {
+    plants = data;
+    render(plants);
+    document.getElementById("loader").style.display = "none";
+  })
+  .catch(err => {
+    document.getElementById("loader").innerText = "Failed to load plants";
+    console.log(err);
+  });
+</script>
+
+</body>
+</html>
