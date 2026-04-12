@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VK Flower Nursery - Gallery</title>
 
+<!-- FONT + ICONS -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+
+/* ================= BASE ================= */
 *{
   margin:0;
   padding:0;
@@ -16,69 +20,141 @@
 }
 
 body{
-  background:#0b1a12;
+  min-height:100vh;
   color:#fff;
-  padding:16px;
+  overflow-x:hidden;
 }
 
-/* HEADER */
-.header{
+/* BACKGROUND */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url("bg.webp") center/cover no-repeat;
+  z-index:-2;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  z-index:-1;
+}
+
+/* ================= LOADER ================= */
+#pageLoader{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.75);
+  backdrop-filter:blur(14px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.spinner{
+  width:44px;
+  height:44px;
+  border:4px solid rgba(255,255,255,0.2);
+  border-top:4px solid #4ade80;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg);}
+}
+
+.loaderText{
+  margin-top:12px;
+  font-size:14px;
+  opacity:0.8;
+}
+
+/* ================= TOP BAR ================= */
+.topbar{
   max-width:1100px;
   margin:auto;
-  margin-bottom:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 0;
+}
+
+.backBtn{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12);
+  backdrop-filter:blur(10px);
+  cursor:pointer;
+  color:white;
+  font-size:13px;
+}
+
+.title{
+  font-size:15px;
+  font-weight:600;
+  opacity:0.9;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#c7f9cc;
+}
+
+/* ================= SEARCH ================= */
+.searchWrap{
+  max-width:1100px;
+  margin:10px auto 18px;
 }
 
 .searchBar{
   width:100%;
   padding:14px 16px;
   border-radius:14px;
-  border:none;
-  outline:none;
-  font-size:14px;
+  border:1px solid rgba(255,255,255,0.12);
   background:rgba(255,255,255,0.08);
-  color:white;
+  color:#fff;
+  outline:none;
   backdrop-filter:blur(12px);
 }
 
-.searchBar::placeholder{
-  color:rgba(255,255,255,0.5);
-}
-
-/* GRID */
+/* ================= GRID ================= */
 .grid{
   max-width:1100px;
   margin:auto;
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
   gap:14px;
 }
 
 /* CARD */
 .card{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
   border-radius:16px;
   padding:10px;
   cursor:pointer;
   transition:0.25s ease;
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(14px);
 }
 
 .card:hover{
   transform:translateY(-6px) scale(1.03);
-  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+  box-shadow:0 18px 35px rgba(0,0,0,0.4);
 }
 
-/* IMAGE */
 .imgWrap{
   width:100%;
   aspect-ratio:1/1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
   border-radius:12px;
-  background:rgba(0,0,0,0.2);
+  overflow:hidden;
 }
 
 .imgWrap img{
@@ -87,58 +163,116 @@ body{
 }
 
 .card:hover img{
-  transform:scale(1.1) rotate(-2deg);
+  transform:scale(1.1);
 }
 
-/* TEXT */
 .name{
   margin-top:8px;
   font-weight:600;
-  font-size:14px;
+  font-size:13px;
+  display:flex;
+  align-items:center;
+  gap:6px;
 }
 
 .alt{
   font-size:11px;
   opacity:0.7;
   font-style:italic;
-  margin-top:2px;
+  margin-top:3px;
 }
 
-/* LOADER */
-.loader{
-  text-align:center;
-  margin-top:40px;
-  opacity:0.6;
+/* ================= FOOTER ================= */
+.footer{
+  max-width:1100px;
+  margin:40px auto 20px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+  font-size:12px;
+  opacity:0.8;
 }
+
+.footer a{
+  color:#c7f9cc;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.footer a:hover{
+  opacity:1;
+}
+
+/* ICON */
+.icon{
+  color:#4ade80;
+  font-size:12px;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="header">
-  <input class="searchBar" id="search" placeholder="Search plants (name, alt names, tags)...">
+<!-- LOADER -->
+<div id="pageLoader">
+  <div class="spinner"></div>
+  <div class="loaderText">Loading plants...</div>
 </div>
 
+<!-- TOP -->
+<div class="topbar">
+  <button class="backBtn" onclick="history.back()">
+    <i class="fa-solid fa-arrow-left"></i> Back
+  </button>
+
+  <div class="title">
+    <i class="fa-solid fa-leaf"></i> VK Nursery Gallery
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="searchWrap">
+  <input class="searchBar" id="search" placeholder="Search plants, tags, alt names...">
+</div>
+
+<!-- GRID -->
 <div class="grid" id="grid"></div>
 
-<div class="loader" id="loader">Loading plants...</div>
+<!-- FOOTER -->
+<div class="footer">
+  <a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+  <a href="contact.html"><i class="fa-solid fa-phone"></i> Contact</a>
+  <a href="privacy.html"><i class="fa-solid fa-shield"></i> Privacy</a>
+  <a href="terms.html"><i class="fa-solid fa-file"></i> Terms</a>
+</div>
 
 <script>
+
 const API = "https://script.google.com/macros/s/AKfycbyAr64GYImWXIql0A17QBhdAhaetRk-m3_8-h5e3sItZKIBBaXEWyeHFn-5YPj7YIvvrA/exec";
 
 let plants = [];
 
-/* DRIVE IMAGE FORMATTER */
+/* DRIVE IMAGE FORMAT */
 function formatImage(url){
   if(!url) return "";
   const match = url.match(/id=([^&]+)/);
-  if(match){
-    return `https://lh3.googleusercontent.com/d/${match[1]}`;
-  }
-  return url;
+  return match ? `https://lh3.googleusercontent.com/d/${match[1]}` : url;
 }
 
-/* RENDER CARDS */
+/* NORMALIZE SEARCH */
+function normalize(str){
+  return (str || "")
+    .toLowerCase()
+    .split(",")
+    .map(s => s.trim())
+    .filter(Boolean);
+}
+
+/* RENDER */
 function render(data){
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
@@ -148,13 +282,16 @@ function render(data){
     const card = document.createElement("div");
     card.className = "card";
 
-    const img = formatImage(p.image);
-
     card.innerHTML = `
       <div class="imgWrap">
-        <img src="${img}" alt="${p.name}">
+        <img src="${formatImage(p.image)}">
       </div>
-      <div class="name">${p.name || ""}</div>
+
+      <div class="name">
+        <i class="fa-solid fa-seedling icon"></i>
+        ${p.name || ""}
+      </div>
+
       <div class="alt">${p.alt_names || ""}</div>
     `;
 
@@ -166,31 +303,49 @@ function render(data){
   });
 }
 
-/* SEARCH LOGIC */
+/* SEARCH */
 document.getElementById("search").addEventListener("input", e => {
   const t = e.target.value.toLowerCase();
 
   const filtered = plants.filter(p =>
-    (p.name || "").toLowerCase().includes(t) ||
-    (p.alt_names || "").toLowerCase().includes(t) ||
-    (p.tags || "").toLowerCase().includes(t)
+    (p.name||"").toLowerCase().includes(t) ||
+    normalize(p.alt_names).some(x => x.includes(t)) ||
+    normalize(p.tags).some(x => x.includes(t))
   );
 
   render(filtered);
 });
 
-/* FETCH DATA */
+/* LOADER LOGIC (MIN 3 SEC) */
+let apiDone = false;
+let timeDone = false;
+
+setTimeout(() => {
+  timeDone = true;
+  hideLoader();
+}, 3000);
+
+function hideLoader(){
+  if(apiDone && timeDone){
+    document.getElementById("pageLoader").style.display = "none";
+  }
+}
+
+/* FETCH */
 fetch(API)
   .then(r => r.json())
   .then(data => {
     plants = data;
     render(plants);
-    document.getElementById("loader").style.display = "none";
+    apiDone = true;
+    hideLoader();
   })
   .catch(err => {
-    document.getElementById("loader").innerText = "Failed to load plants";
     console.log(err);
+    apiDone = true;
+    hideLoader();
   });
+
 </script>
 
 </body>
