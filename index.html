@@ -11,7 +11,10 @@
 
 <style>
 
-/* BASE */
+/* =========================
+ BASE
+========================= */
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -57,7 +60,46 @@ body::before {
   50% { transform: translateY(-18px); opacity: 0.35; }
 }
 
-/* CARD */
+/* =========================
+ LOADING OVERLAY
+========================= */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 40, 20, 0.92);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  transition: opacity 0.6s ease;
+}
+
+.loader-circle {
+  width: 42px;
+  height: 42px;
+  border: 3px solid rgba(255,255,255,0.15);
+  border-top: 3px solid #2ecc71;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loader-text {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* =========================
+ CARD
+========================= */
+
 .glass-card {
   position: relative;
   z-index: 2;
@@ -168,7 +210,10 @@ body::before {
   z-index: 2;
 }
 
-/* FOOTER (RESTORED) */
+/* =========================
+ FOOTER LINKS (UPDATED)
+========================= */
+
 .footer {
   position: absolute;
   bottom: 10px;
@@ -177,6 +222,25 @@ body::before {
   font-size: 0.7rem;
   opacity: 0.6;
   z-index: 2;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: #c8e6c9;
+  text-decoration: none;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.footer-links a:hover {
+  opacity: 1;
 }
 
 /* MOBILE */
@@ -191,21 +255,19 @@ body::before {
   }
 }
 
-/* MOTION SAFETY */
-@media (prefers-reduced-motion: reduce) {
-  .glass-card::before,
-  .leaf {
-    animation: none !important;
-  }
-}
-
 </style>
 
 </head>
 
 <body>
 
-<!-- FLOATING ELEMENTS -->
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-circle"></div>
+  <div class="loader-text">Loading Nursery...</div>
+</div>
+
+<!-- FLOATING LEAVES -->
 <div class="leaf"></div>
 <div class="leaf"></div>
 <div class="leaf"></div>
@@ -238,8 +300,29 @@ body::before {
 
 <!-- FOOTER -->
 <div class="footer">
+
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </div>
+
   © 2026 VK Flower Nursery • Made by RCHT
 </div>
+
+<script>
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+
+  setTimeout(() => {
+    loader.style.opacity = "0";
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 600);
+  }, 3000); // 3 seconds
+});
+</script>
 
 </body>
 </html>
