@@ -3,111 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms - VK Flower Nursery</title>
+<title>Terms | VK Nursery</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
 
 body{
-  font-family:'Poppins',sans-serif;
-  background:url('bg.webp') no-repeat center/cover;
   min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  color:#e8f5e9;
-  position:relative;
+  background:url('bg.webp') center/cover no-repeat;
+  color:white;
 }
 
 body::before{
   content:"";
-  position:absolute;
+  position:fixed;
   inset:0;
-  background:rgba(0,40,20,0.6);
-  backdrop-filter:blur(2px);
+  background:rgba(0,0,0,0.62);
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 16px;
+  background:rgba(0,0,0,0.35);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.back{color:#c7f9cc;cursor:pointer;font-size:13px;}
+.title{font-weight:600;color:#c7f9cc;}
+
+.container{
+  max-width:750px;
+  margin:auto;
+  padding:18px;
 }
 
 .card{
-  position:relative;
-  z-index:1;
-  max-width:420px;
-  width:100%;
-  padding:26px;
-  border-radius:22px;
-  backdrop-filter:blur(18px);
-  background:rgba(0,80,40,0.25);
-  border:1px solid rgba(255,255,255,0.08);
+  margin-top:18px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:18px;
+  backdrop-filter:blur(14px);
+  padding:20px;
 }
 
-h1{
+h2{
+  font-size:16px;
   margin-bottom:10px;
-  font-size:1.6rem;
+  color:#c7f9cc;
+  display:flex;
+  gap:10px;
+  align-items:center;
 }
 
 p{
-  font-size:0.85rem;
-  line-height:1.6;
+  font-size:13px;
   opacity:0.9;
-  margin-bottom:10px;
+  line-height:1.6;
+  margin:10px 0;
 }
 
-.section-title{
-  margin-top:14px;
-  margin-bottom:6px;
-  font-weight:600;
-  font-size:0.9rem;
-  opacity:1;
+.icon{
+  display:flex;
+  gap:10px;
+  margin:10px 0;
+  font-size:13px;
 }
 
-.back-btn{
-  display:inline-block;
-  margin-top:18px;
-  padding:10px 14px;
-  border-radius:10px;
-  background:rgba(255,255,255,0.08);
-  color:#c8e6c9;
-  text-decoration:none;
-  font-size:0.85rem;
-}
+.icon i{color:#fb7185;}
+
 </style>
 </head>
 
 <body>
 
-<div class="card">
-  <h1>Terms & Conditions</h1>
+<div class="topbar">
+  <div class="back" onclick="history.back()">
+    <i class="fa-solid fa-arrow-left"></i> Back
+  </div>
+  <div class="title">Terms & Conditions</div>
+  <div></div>
+</div>
 
-  <p>
-    These terms govern the use of services and plant purchases from VK Flower Nursery.
-  </p>
+<div class="container">
 
-  <div class="section-title">Plant Nature & Responsibility</div>
-  <p>
-    All plants are living biological assets. Their survival, growth, and long-term condition depend entirely on the care, environment, and maintenance provided by the buyer after purchase.
-  </p>
+  <div class="card">
 
-  <p>
-    Once a plant is sold, it becomes the full responsibility of the customer. VK Flower Nursery shall not be held liable for plant health deterioration, damage, or loss resulting from improper care, environmental conditions, or neglect.
-  </p>
+    <h2><i class="fa-solid fa-leaf"></i> Plant Responsibility</h2>
+    <p>
+      Plants are living products. Once delivered or purchased, their survival depends on user care, watering, and environment conditions.
+    </p>
 
-  <div class="section-title">Refund & Replacement Policy</div>
-  <p>
-    Plants are non-refundable and non-replaceable items due to their biological nature. Each plant requires specific care conditions that vary after it leaves the nursery.
-  </p>
+    <h2><i class="fa-solid fa-triangle-exclamation"></i> No Refund Policy</h2>
+    <p>
+      We do not offer refunds or replacements for plant death due to neglect, weather conditions, or improper handling after sale.
+    </p>
 
-  <p>
-    Any guidance provided by VK Flower Nursery is advisory in nature and should be followed at the discretion of the buyer.
-  </p>
+    <h2><i class="fa-solid fa-truck"></i> Delivery Condition</h2>
+    <p>
+      Plants are carefully packed before dispatch. Minor stress during transport is natural and not considered damage.
+    </p>
 
-  <div class="section-title">General</div>
-  <p>
-    Plant availability, size, and appearance may vary naturally. We reserve the right to update plant listings and guidance without prior notice.
-  </p>
+    <h2><i class="fa-solid fa-handshake"></i> User Agreement</h2>
+    <p>
+      By purchasing, the user agrees that plant care responsibility transfers fully after handover.
+    </p>
 
-  <a href="javascript:history.back()" class="back-btn">← Back</a>
+  </div>
+
 </div>
 
 </body>
