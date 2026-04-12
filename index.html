@@ -9,9 +9,12 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+<!-- ICONS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 
-/* RESET */
+/* BASE */
 *{
   margin:0;
   padding:0;
@@ -19,7 +22,6 @@
   font-family:'Outfit',sans-serif;
 }
 
-/* SAME BASE AS GALLERY */
 body{
   min-height:100vh;
   display:flex;
@@ -31,7 +33,7 @@ body{
   position:relative;
 }
 
-/* EXACT SAME OVERLAY SYSTEM AS GALLERY */
+/* MATCH GALLERY OVERLAY */
 body::before{
   content:"";
   position:absolute;
@@ -40,7 +42,7 @@ body::before{
   z-index:0;
 }
 
-/* CARD = SAME SURFACE SYSTEM */
+/* CARD */
 .glass-card{
   position:relative;
   z-index:2;
@@ -51,10 +53,9 @@ body::before{
 
   background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.12);
-
   backdrop-filter:blur(14px);
-  box-shadow:0 10px 35px rgba(0,0,0,0.45);
 
+  box-shadow:0 10px 35px rgba(0,0,0,0.45);
   text-align:center;
 }
 
@@ -62,13 +63,31 @@ body::before{
 .brand{
   font-size:2rem;
   font-weight:600;
-  letter-spacing:0.2px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
 }
 
+.brand i{
+  color:#4ade80;
+  font-size:18px;
+}
+
+/* META */
 .meta{
   font-size:0.85rem;
   opacity:0.75;
   margin-top:6px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+}
+
+.meta i{
+  color:#4ade80;
+  font-size:12px;
 }
 
 /* DIVIDER */
@@ -86,24 +105,34 @@ body::before{
   margin-bottom:18px;
 }
 
-/* BUTTONS = SAME AS GALLERY ACCENT SYSTEM */
+/* BUTTONS */
 .btn{
-  display:block;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
   width:100%;
   padding:13px;
   margin-bottom:12px;
+
   border-radius:12px;
   text-decoration:none;
   font-size:0.95rem;
   font-weight:500;
+
   transition:0.2s ease;
 }
 
-/* PRIMARY (MATCHES ACCENT #4ade80) */
+/* PRIMARY (MATCH GALLERY ACCENT) */
 .btn-primary{
   background:rgba(74,222,128,0.12);
   border:1px solid rgba(74,222,128,0.35);
   color:#c7f9cc;
+}
+
+.btn-primary i{
+  color:#4ade80;
 }
 
 .btn-primary:hover{
@@ -119,6 +148,10 @@ body::before{
   pointer-events:none;
 }
 
+.btn-disabled i{
+  color:rgba(255,255,255,0.3);
+}
+
 /* BADGES */
 .badges{
   margin-top:14px;
@@ -128,6 +161,17 @@ body::before{
   justify-content:center;
   flex-wrap:wrap;
   gap:10px;
+}
+
+.badges span{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.badges i{
+  color:#4ade80;
+  font-size:12px;
 }
 
 /* FOOTER */
@@ -159,8 +203,15 @@ body::before{
 
 <div class="glass-card">
 
-  <div class="brand">VK Flower Nursery</div>
-  <div class="meta">Gaggal, Kangra • 30+ Years of Trust</div>
+  <div class="brand">
+    <i class="fa-solid fa-leaf"></i>
+    VK Flower Nursery
+  </div>
+
+  <div class="meta">
+    <i class="fa-solid fa-location-dot"></i>
+    Gaggal, Kangra • 30+ Years of Trust
+  </div>
 
   <div class="divider"></div>
 
@@ -169,17 +220,19 @@ body::before{
   </div>
 
   <a href="gallery.html" class="btn btn-primary">
+    <i class="fa-solid fa-seedling"></i>
     Plant Care Guide
   </a>
 
   <div class="btn btn-disabled">
+    <i class="fa-solid fa-lock"></i>
     Explore Plants (Coming Soon)
   </div>
 
   <div class="badges">
-    <span>🌿 Care-first</span>
-    <span>🪴 Nursery-grown</span>
-    <span>🚚 Safe handling</span>
+    <span><i class="fa-solid fa-leaf"></i> Care-first</span>
+    <span><i class="fa-solid fa-seedling"></i> Nursery-grown</span>
+    <span><i class="fa-solid fa-truck"></i> Safe handling</span>
   </div>
 
 </div>
