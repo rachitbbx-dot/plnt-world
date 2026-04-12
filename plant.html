@@ -26,7 +26,7 @@ body{
   position:relative;
 }
 
-/* MATCH GALLERY OVERLAY */
+/* GALLERY-MATCHED OVERLAY */
 body::before{
   content:"";
   position:fixed;
@@ -42,9 +42,9 @@ body::before{
   background:rgba(0,0,0,0.75);
   backdrop-filter:blur(14px);
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
-  flex-direction:column;
   z-index:9999;
 }
 
@@ -67,7 +67,7 @@ body::before{
   opacity:0.8;
 }
 
-/* ================= TOP BAR ================= */
+/* ================= TOPBAR ================= */
 .topbar{
   position:relative;
   z-index:2;
@@ -99,7 +99,7 @@ body::before{
   gap:8px;
 }
 
-/* ================= MAIN CARD ================= */
+/* ================= MAIN ================= */
 .container{
   position:relative;
   z-index:2;
@@ -116,24 +116,33 @@ body::before{
   padding:18px;
 }
 
-/* IMAGE */
+/* ================= IMAGE (FIXED SHARPNESS) ================= */
 .heroImg{
   width:100%;
-  border-radius:14px;
+  max-height:280px;
   overflow:hidden;
+  border-radius:14px;
   margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.15);
 }
 
 .heroImg img{
   width:100%;
-  display:block;
+  max-height:280px;
+  object-fit:contain;
 }
 
-/* NAME */
+/* ================= TEXT ================= */
 .name{
   font-size:1.6rem;
   font-weight:600;
   margin-bottom:6px;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .alt{
@@ -143,7 +152,7 @@ body::before{
   margin-bottom:14px;
 }
 
-/* TAGS */
+/* ================= TAGS ================= */
 .tags{
   display:flex;
   flex-wrap:wrap;
@@ -168,7 +177,6 @@ body::before{
   margin-top:10px;
 }
 
-/* CARD */
 .care{
   background:rgba(255,255,255,0.04);
   border:1px solid rgba(255,255,255,0.10);
@@ -176,16 +184,10 @@ body::before{
   padding:14px;
 }
 
-/* ICON COLORS */
 .care i{
   font-size:16px;
   margin-bottom:6px;
 }
-
-.light i{ color:#facc15; }
-.water i{ color:#38bdf8; }
-.soil i{ color:#a16207; }
-.temp i{ color:#fb7185; }
 
 .care h4{
   font-size:13px;
@@ -198,7 +200,13 @@ body::before{
   line-height:1.4;
 }
 
-/* ================= FOOTER BUTTON ================= */
+/* ICON COLORS */
+.light i{ color:#facc15; }
+.water i{ color:#38bdf8; }
+.soil i{ color:#a16207; }
+.temp i{ color:#fb7185; }
+
+/* ================= BUTTONS ================= */
 .bottomBtn{
   margin-top:16px;
   display:flex;
@@ -250,7 +258,7 @@ body::before{
   </div>
 </div>
 
-<!-- MAIN -->
+<!-- CONTENT -->
 <div class="container">
   <div class="card" id="content"></div>
 </div>
@@ -262,15 +270,13 @@ const API="https://script.google.com/macros/s/AKfycbyAr64GYImWXIql0A17QBhdAhaetR
 /* IMAGE FORMATTER */
 function formatImage(url){
   if(!url) return "";
-  const id = url.match(/id=([^&]+)/);
+  const id=url.match(/id=([^&]+)/);
   return id ? `https://lh3.googleusercontent.com/d/${id[1]}` : url;
 }
 
 /* GET ID */
 const params=new URLSearchParams(window.location.search);
 const id=params.get("id");
-
-setTimeout(()=>{},3000); // UI delay anchor
 
 fetch(API)
 .then(r=>r.json())
@@ -329,12 +335,8 @@ fetch(API)
     </div>
 
     <div class="bottomBtn">
-      <a class="btn primary" href="gallery.html">
-        Explore More
-      </a>
-      <div class="btn secondary" onclick="history.back()">
-        Back
-      </div>
+      <a class="btn primary" href="gallery.html">Explore More</a>
+      <div class="btn secondary" onclick="history.back()">Back</div>
     </div>
 
   `;
