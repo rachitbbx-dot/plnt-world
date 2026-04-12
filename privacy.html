@@ -3,76 +3,118 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy - VK Flower Nursery</title>
+<title>Privacy Policy | VK Nursery</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
 
 body{
-  font-family:'Poppins',sans-serif;
-  background:url('bg.webp') no-repeat center/cover;
   min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  color:#e8f5e9;
-  position:relative;
+  background:url('bg.webp') center/cover no-repeat;
+  color:white;
 }
 
 body::before{
   content:"";
-  position:absolute;
+  position:fixed;
   inset:0;
-  background:rgba(0,40,20,0.6);
-  backdrop-filter:blur(2px);
+  background:rgba(0,0,0,0.62);
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:5;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 16px;
+  background:rgba(0,0,0,0.35);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.back{color:#c7f9cc;cursor:pointer;font-size:13px;}
+.title{font-weight:600;color:#c7f9cc;}
+
+.container{
+  max-width:750px;
+  margin:auto;
+  padding:18px;
 }
 
 .card{
-  position:relative;
-  z-index:1;
-  max-width:420px;
-  width:100%;
-  padding:26px;
-  border-radius:22px;
-  backdrop-filter:blur(18px);
-  background:rgba(0,80,40,0.25);
+  margin-top:18px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:18px;
+  backdrop-filter:blur(14px);
+  padding:20px;
 }
 
-h1{margin-bottom:10px;}
+h2{
+  font-size:16px;
+  margin-bottom:10px;
+  color:#c7f9cc;
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
 
 p{
-  font-size:0.85rem;
-  line-height:1.6;
+  font-size:13px;
   opacity:0.9;
-  margin-bottom:10px;
+  line-height:1.6;
+  margin:10px 0;
 }
 
-.back-btn{
-  display:inline-block;
-  margin-top:18px;
-  padding:10px 14px;
-  border-radius:10px;
-  background:rgba(255,255,255,0.08);
-  color:#c8e6c9;
-  text-decoration:none;
-  font-size:0.85rem;
+.icon{
+  display:flex;
+  gap:10px;
+  margin:10px 0;
+  font-size:13px;
 }
+
+.icon i{color:#38bdf8;}
+
 </style>
 </head>
 
 <body>
 
-<div class="card">
-  <h1>Privacy Policy</h1>
+<div class="topbar">
+  <div class="back" onclick="history.back()">
+    <i class="fa-solid fa-arrow-left"></i> Back
+  </div>
+  <div class="title">Privacy Policy</div>
+  <div></div>
+</div>
 
-  <p>No personal data is collected at this stage.</p>
-  <p>Future updates may include forms where minimal data will be used responsibly.</p>
-  <p>No user data is sold or shared.</p>
+<div class="container">
 
-  <a href="javascript:history.back()" class="back-btn">← Back</a>
+  <div class="card">
+
+    <h2><i class="fa-solid fa-shield-halved"></i> Data Usage</h2>
+    <p>
+      We do not collect personal data without user interaction. Any contact made via phone, email, or WhatsApp is used only for responding to plant-related queries.
+    </p>
+
+    <h2><i class="fa-solid fa-database"></i> Stored Information</h2>
+    <p>
+      Basic plant browsing data may be cached locally on your device to improve loading speed. No sensitive personal data is stored.
+    </p>
+
+    <h2><i class="fa-solid fa-user-lock"></i> Third Party</h2>
+    <p>
+      This website does not sell or share user data with third parties.
+    </p>
+
+  </div>
+
 </div>
 
 </body>
