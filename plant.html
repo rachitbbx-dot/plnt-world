@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plant Details</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* ================= BASE ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Outfit',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:url('bg.webp') center/cover no-repeat;
+  color:#fff;
+  position:relative;
+}
+
+/* MATCH GALLERY OVERLAY */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  z-index:0;
+}
+
+/* ================= LOADER ================= */
+#loader{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.75);
+  backdrop-filter:blur(14px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:9999;
+}
+
+.spin{
+  width:42px;
+  height:42px;
+  border:3px solid rgba(255,255,255,0.2);
+  border-top:3px solid #4ade80;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg);}
+}
+
+#loader p{
+  margin-top:10px;
+  font-size:13px;
+  opacity:0.8;
+}
+
+/* ================= TOP BAR ================= */
+.topbar{
+  position:relative;
+  z-index:2;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px;
+  max-width:1000px;
+  margin:auto;
+}
+
+.back{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  cursor:pointer;
+  font-size:13px;
+}
+
+.title{
+  font-weight:600;
+  color:#c7f9cc;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* ================= MAIN CARD ================= */
+.container{
+  position:relative;
+  z-index:2;
+  max-width:1000px;
+  margin:auto;
+  padding:16px;
+}
+
+.card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:18px;
+  backdrop-filter:blur(14px);
+  padding:18px;
+}
+
+/* IMAGE */
+.heroImg{
+  width:100%;
+  border-radius:14px;
+  overflow:hidden;
+  margin-bottom:14px;
+}
+
+.heroImg img{
+  width:100%;
+  display:block;
+}
+
+/* NAME */
+.name{
+  font-size:1.6rem;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+.alt{
+  font-size:12px;
+  opacity:0.7;
+  font-style:italic;
+  margin-bottom:14px;
+}
+
+/* TAGS */
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:14px;
+}
+
+.tag{
+  font-size:11px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(74,222,128,0.12);
+  border:1px solid rgba(74,222,128,0.25);
+  color:#c7f9cc;
+}
+
+/* ================= CARE GRID ================= */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+  margin-top:10px;
+}
+
+/* CARD */
+.care{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.10);
+  border-radius:14px;
+  padding:14px;
+}
+
+/* ICON COLORS */
+.care i{
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.light i{ color:#facc15; }
+.water i{ color:#38bdf8; }
+.soil i{ color:#a16207; }
+.temp i{ color:#fb7185; }
+
+.care h4{
+  font-size:13px;
+  margin-bottom:6px;
+}
+
+.care p{
+  font-size:12px;
+  opacity:0.8;
+  line-height:1.4;
+}
+
+/* ================= FOOTER BUTTON ================= */
+.bottomBtn{
+  margin-top:16px;
+  display:flex;
+  gap:10px;
+}
+
+.btn{
+  flex:1;
+  padding:12px;
+  border-radius:12px;
+  text-align:center;
+  font-size:13px;
+  cursor:pointer;
+  text-decoration:none;
+}
+
+.primary{
+  background:rgba(74,222,128,0.12);
+  border:1px solid rgba(74,222,128,0.3);
+  color:#c7f9cc;
+}
+
+.secondary{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  color:#fff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="spin"></div>
+  <p>Loading plant details...</p>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="back" onclick="history.back()">
+    <i class="fa-solid fa-arrow-left"></i> Back
+  </div>
+
+  <div class="title">
+    <i class="fa-solid fa-leaf"></i> Plant Details
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+  <div class="card" id="content"></div>
+</div>
+
+<script>
+
+const API="https://script.google.com/macros/s/AKfycbyAr64GYImWXIql0A17QBhdAhaetRk-m3_8-h5e3sItZKIBBaXEWyeHFn-5YPj7YIvvrA/exec";
+
+/* IMAGE FORMATTER */
+function formatImage(url){
+  if(!url) return "";
+  const id = url.match(/id=([^&]+)/);
+  return id ? `https://lh3.googleusercontent.com/d/${id[1]}` : url;
+}
+
+/* GET ID */
+const params=new URLSearchParams(window.location.search);
+const id=params.get("id");
+
+setTimeout(()=>{},3000); // UI delay anchor
+
+fetch(API)
+.then(r=>r.json())
+.then(data=>{
+
+  const plant=data.find(p=>String(p.id)===String(id));
+
+  if(!plant){
+    document.getElementById("content").innerHTML="Plant not found";
+    return;
+  }
+
+  document.getElementById("content").innerHTML=`
+
+    <div class="heroImg">
+      <img src="${formatImage(plant.image)}">
+    </div>
+
+    <div class="name">
+      <i class="fa-solid fa-seedling" style="color:#4ade80;"></i>
+      ${plant.name}
+    </div>
+
+    <div class="alt">${plant.alt_names}</div>
+
+    <div class="tags">
+      ${(plant.tags||"").split(",").map(t=>`<span class="tag">${t}</span>`).join("")}
+    </div>
+
+    <div class="grid">
+
+      <div class="care light">
+        <i class="fa-solid fa-sun"></i>
+        <h4>Light</h4>
+        <p>${plant.light_care}</p>
+      </div>
+
+      <div class="care water">
+        <i class="fa-solid fa-droplet"></i>
+        <h4>Water</h4>
+        <p>${plant.water_care}</p>
+      </div>
+
+      <div class="care soil">
+        <i class="fa-solid fa-seedling"></i>
+        <h4>Soil</h4>
+        <p>${plant.soil_care}</p>
+      </div>
+
+      <div class="care temp">
+        <i class="fa-solid fa-temperature-half"></i>
+        <h4>Temperature</h4>
+        <p>${plant.temprature_care}</p>
+      </div>
+
+    </div>
+
+    <div class="bottomBtn">
+      <a class="btn primary" href="gallery.html">
+        Explore More
+      </a>
+      <div class="btn secondary" onclick="history.back()">
+        Back
+      </div>
+    </div>
+
+  `;
+
+  setTimeout(()=>{
+    document.getElementById("loader").style.display="none";
+  },3000);
+
+});
+
+</script>
+
+</body>
+</html>
