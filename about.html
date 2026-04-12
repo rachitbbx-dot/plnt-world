@@ -3,104 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About - VK Flower Nursery</title>
+<title>About | VK Nursery</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
 
 body{
-  font-family:'Poppins',sans-serif;
-  background:url('bg.webp') no-repeat center/cover;
   min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  color:#e8f5e9;
-  position:relative;
+  background:url('bg.webp') center/cover no-repeat;
+  color:white;
 }
 
 body::before{
   content:"";
-  position:absolute;
+  position:fixed;
   inset:0;
-  background:rgba(0,40,20,0.6);
-  backdrop-filter:blur(2px);
+  background:rgba(0,0,0,0.6);
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 16px;
+  background:rgba(0,0,0,0.35);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.back{color:#c7f9cc;cursor:pointer;}
+
+.title{font-weight:600;color:#c7f9cc;}
+
+.container{
+  max-width:700px;
+  margin:auto;
+  padding:18px;
 }
 
 .card{
-  position:relative;
-  z-index:1;
-  max-width:420px;
-  width:100%;
-  padding:26px;
-  border-radius:22px;
-  backdrop-filter:blur(18px);
-  background:rgba(0,80,40,0.25);
-  border:1px solid rgba(255,255,255,0.08);
-  box-shadow:0 10px 40px rgba(0,0,0,0.5);
-}
-
-.header{
-  text-align:center;
-  margin-bottom:15px;
-}
-
-.header h1{
-  font-size:1.8rem;
-}
-
-.divider{
-  height:1px;
-  background:rgba(255,255,255,0.1);
-  margin:15px 0;
+  margin-top:20px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:18px;
+  backdrop-filter:blur(14px);
+  padding:20px;
 }
 
 p{
-  font-size:0.9rem;
-  line-height:1.6;
+  font-size:13px;
   opacity:0.9;
-  margin-bottom:12px;
+  line-height:1.6;
+  margin:12px 0;
 }
 
-.back-btn{
-  display:inline-block;
-  margin-top:18px;
-  padding:10px 14px;
-  border-radius:10px;
-  background:rgba(255,255,255,0.08);
-  color:#c8e6c9;
-  text-decoration:none;
-  font-size:0.85rem;
+.icon{
+  display:flex;
+  gap:10px;
+  margin:10px 0;
+  font-size:13px;
 }
+
+.icon i{color:#4ade80;}
+
 </style>
 </head>
 
 <body>
 
-<div class="card">
-  <div class="header">
-    <h1>About Us</h1>
+<div class="topbar">
+  <div class="back" onclick="history.back()">
+    <i class="fa-solid fa-arrow-left"></i> Back
   </div>
+  <div class="title">About</div>
+  <div></div>
+</div>
 
-  <div class="divider"></div>
+<div class="container">
+  <div class="card">
 
-  <p>
-    VK Flower Nursery, based in Gaggal, Kangra, has over 30 years of experience in plant care and nursery management.
-  </p>
+    <p>
+      VK Flower Nursery focuses on real plant survival, not just selling plants.
+      Every plant is grown under real Kangra climate conditions.
+    </p>
 
-  <p>
-    Founded by Shri Kishori Lal and now led by Mr. Vivek Kumar, the nursery focuses on practical plant knowledge rather than just sales.
-  </p>
+    <div class="icon"><i class="fa-solid fa-seedling"></i> Nursery-grown plants</div>
+    <div class="icon"><i class="fa-solid fa-hand-holding-heart"></i> Care guidance</div>
+    <div class="icon"><i class="fa-solid fa-truck"></i> Safe handling</div>
 
-  <p>
-    The goal is simple — help people grow plants successfully with the right guidance.
-  </p>
-
-  <a href="javascript:history.back()" class="back-btn">← Back</a>
+  </div>
 </div>
 
 </body>
