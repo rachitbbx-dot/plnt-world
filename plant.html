@@ -26,7 +26,6 @@ body{
   position:relative;
 }
 
-/* GALLERY-MATCHED OVERLAY */
 body::before{
   content:"";
   position:fixed;
@@ -116,7 +115,7 @@ body::before{
   padding:18px;
 }
 
-/* ================= IMAGE (FIXED SHARPNESS) ================= */
+/* ================= IMAGE ================= */
 .heroImg{
   width:100%;
   max-height:280px;
@@ -200,7 +199,6 @@ body::before{
   line-height:1.4;
 }
 
-/* ICON COLORS */
 .light i{ color:#facc15; }
 .water i{ color:#38bdf8; }
 .soil i{ color:#a16207; }
@@ -236,18 +234,15 @@ body::before{
 }
 
 </style>
-
 </head>
 
 <body>
 
-<!-- LOADER -->
 <div id="loader">
   <div class="spin"></div>
   <p>Loading plant details...</p>
 </div>
 
-<!-- TOP BAR -->
 <div class="topbar">
   <div class="back" onclick="history.back()">
     <i class="fa-solid fa-arrow-left"></i> Back
@@ -258,7 +253,6 @@ body::before{
   </div>
 </div>
 
-<!-- CONTENT -->
 <div class="container">
   <div class="card" id="content"></div>
 </div>
@@ -289,21 +283,27 @@ fetch(API)
     return;
   }
 
+  // SAFE VALUES
+  const tags = (plant.tags || "")
+    .split(",")
+    .map(t => t.trim())
+    .filter(Boolean);
+
   document.getElementById("content").innerHTML=`
 
     <div class="heroImg">
-      <img src="${formatImage(plant.image)}">
+      <img src="${formatImage(plant.image)}" alt="${plant.name || "Plant"}" loading="lazy">
     </div>
 
     <div class="name">
       <i class="fa-solid fa-seedling" style="color:#4ade80;"></i>
-      ${plant.name}
+      ${plant.name || "Unknown Plant"}
     </div>
 
-    <div class="alt">${plant.alt_names}</div>
+    <div class="alt">${plant.alt_names || "No alternate names"}</div>
 
     <div class="tags">
-      ${(plant.tags||"").split(",").map(t=>`<span class="tag">${t}</span>`).join("")}
+      ${tags.length ? tags.map(t=>`<span class="tag">${t}</span>`).join("") : ""}
     </div>
 
     <div class="grid">
@@ -311,25 +311,25 @@ fetch(API)
       <div class="care light">
         <i class="fa-solid fa-sun"></i>
         <h4>Light</h4>
-        <p>${plant.light_care}</p>
+        <p>${plant.light_care || "Unavailable"}</p>
       </div>
 
       <div class="care water">
         <i class="fa-solid fa-droplet"></i>
         <h4>Water</h4>
-        <p>${plant.water_care}</p>
+        <p>${plant.water_care || "Unavailable"}</p>
       </div>
 
       <div class="care soil">
         <i class="fa-solid fa-seedling"></i>
         <h4>Soil</h4>
-        <p>${plant.soil_care}</p>
+        <p>${plant.soil_care || "Unavailable"}</p>
       </div>
 
       <div class="care temp">
         <i class="fa-solid fa-temperature-half"></i>
         <h4>Temperature</h4>
-        <p>${plant.temprature_care}</p>
+        <p>${plant.temperature_care || "Unavailable"}</p>
       </div>
 
     </div>
@@ -341,10 +341,13 @@ fetch(API)
 
   `;
 
-  setTimeout(()=>{
-    document.getElementById("loader").style.display="none";
-  },3000);
-
+})
+.catch(err=>{
+  console.error(err);
+  document.getElementById("content").innerHTML="Error loading data";
+})
+.finally(()=>{
+  document.getElementById("loader").style.display="none";
 });
 
 </script>
